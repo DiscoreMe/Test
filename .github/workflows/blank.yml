@@ -1,17 +1,44 @@
-name: CI
-
-on: [push]
-
+name: Go
+on: 
+  pull_request:
+    branches:
+      - master
+  
 jobs:
+  mongodb:
+    runs-on: [ubuntu-18.04]
+    container:
+      image: mongo:4.1
+      env:
+        MONGO_INITDB_ROOT_USERNAME: tester
+        MONGO_INITDB_ROOT_PASSWORD: dfjgre
+    
   build:
-
+    name: Tests and deploy
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v1
-    - name: Run a one-line script
-      run: echo Hello, world!
-    - name: Run a multi-line script
+
+    - name: Set up Go 1.13
+      uses: actions/setup-go@v1
+      with:
+        go-version: 1.13
+      id: go
+
+    - name: Check out code into the Go module directory
+      uses: actions/checkout@v1
+    
+    - name: Install MongoDB
       run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
+        wget -qO - https://www.mongodb.org/static/pgp/server-3.6.asc | sudo apt-key add -
+        echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.6 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.6.list
+        sudo apt-get update
+        sudo apt-get install -y mongodb-org
+        sudo apt-get install -y mongodb-org=3.6.14 mongodb-org-server=3.6.14 mongodb-org-shell=3.6.14 mongodb-org-mongos=3.6.14 mongodb-org-tools=3.6.14
+    - name: Start MongoDB
+      run: sudo systemctl start mongod
+      
+    - name: Go tests
+      run: go test -v
+    
+    
+    
