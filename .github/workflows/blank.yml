@@ -5,6 +5,7 @@ on:
       - master
 jobs:
   build:
+    runs-on: ubuntu-latest
     services:
         mongo:4.1:
           env:
@@ -12,7 +13,6 @@ jobs:
             MONGO_INITDB_ROOT_PASSWORD: dfjgre
   
     name: Tests and deploy
-    runs-on: ubuntu-latest
     steps:
 
     - name: Set up Go 1.13
