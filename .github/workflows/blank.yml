@@ -3,22 +3,16 @@ on:
   pull_request:
     branches:
       - master
-
 jobs:
-  mongodb:
-    runs-on: [ubuntu-18.04]
-    services:
-      mongo:4.1:
-        env:
-          MONGO_INITDB_ROOT_USERNAME: tester
-          MONGO_INITDB_ROOT_PASSWORD: dfjgre
-    steps:
-      - name: Status MongoDB
-      - run: echo "Running!"
   build:
+    services:
+        mongo:4.1:
+          env:
+            MONGO_INITDB_ROOT_USERNAME: tester
+            MONGO_INITDB_ROOT_PASSWORD: dfjgre
+  
     name: Tests and deploy
     runs-on: ubuntu-latest
-    needs: [mongodb]
     steps:
 
     - name: Set up Go 1.13
