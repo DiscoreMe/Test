@@ -3,15 +3,15 @@ on:
   pull_request:
     branches:
       - master
-  
+
 jobs:
   mongodb:
     runs-on: [ubuntu-18.04]
-    container:
-      image: mongo:4.1
-      env:
-        MONGO_INITDB_ROOT_USERNAME: tester
-        MONGO_INITDB_ROOT_PASSWORD: dfjgre
+    services:
+      mongo:4.1:
+        env:
+          MONGO_INITDB_ROOT_USERNAME: tester
+          MONGO_INITDB_ROOT_PASSWORD: dfjgre
     
   build:
     name: Tests and deploy
