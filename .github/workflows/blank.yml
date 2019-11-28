@@ -10,7 +10,8 @@ jobs:
   build:
     runs-on: [ubuntu-18.04]
     services:
-        mongo:4.1:
+        mongo:
+          image: mongo:4.1
           env:
             MONGO_INITDB_ROOT_USERNAME: tester
             MONGO_INITDB_ROOT_PASSWORD: dfjgre
