@@ -13,7 +13,9 @@ jobs:
     name: Tests and deploy
     steps:
       - name: Get
-        run: ls /github/workspace
+        run: |
+          ls
+          ls /github
       - name: Test
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
