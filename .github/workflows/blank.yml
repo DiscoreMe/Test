@@ -9,13 +9,7 @@ on:
 jobs:
   build:
     runs-on: [ubuntu-18.04]
-    services:
-        mongo:
-          image: mongo:4.1
-          env:
-            MONGO_INITDB_ROOT_USERNAME: tester
-            MONGO_INITDB_ROOT_PASSWORD: dfjgre
-  
+    
     name: Tests and deploy
     steps:
       - name: Test
@@ -25,3 +19,4 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_TOKEN }}
           registry: docker.pkg.github.com
+          snapshot: true
