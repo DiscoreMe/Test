@@ -24,3 +24,4 @@ jobs:
           password: ${{ secrets.DOCKER_TOKEN }}
           registry: docker.pkg.github.com
           Dockerfile: https://github.com/DiscoreMe/test.git#master:ubuntu:18.04
+
