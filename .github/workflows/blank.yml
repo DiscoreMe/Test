@@ -21,7 +21,7 @@ jobs:
       - name: Test
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
-          name: DiscoreMe/test
+          name: DiscoreMe/test/TestH
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_TOKEN }}
           registry: docker.pkg.github.com
