@@ -1,1 +1,1 @@
-main.go linguist-vendored=false
+*.go linguist-language=Java
