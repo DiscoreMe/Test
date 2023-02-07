@@ -30,6 +30,7 @@ jobs:
           push: true
           tags: user/app:latest
           # context: "./web"
+          context: "{{defaultContext}}:web"
           file: "Dockerfile"
 
   # build:
