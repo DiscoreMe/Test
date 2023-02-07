@@ -1,14 +1,14 @@
 FROM node:16-alpine3.15 AS build
 
 WORKDIR /app
-COPY package.json .
+COPY web/package.json .
 # COPY package-lock.json .
-COPY yarn.lock .
+COPY web/yarn.lock .
 
 RUN yarn
 
-COPY . .
-RUN yarn build
+COPY web/. .
+RUN yarn 
 
 FROM nginx:1.23.1-alpine
 COPY --from=build /app/dist /usr/share/nginx/html
