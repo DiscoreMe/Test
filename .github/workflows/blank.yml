@@ -39,7 +39,7 @@ jobs:
   #   name: Tests and deploy
   #   steps:
   #     - name: Test
-  #       uses: elgohr/Publish-Docker-Github-Action@master
+  #       uses: elgohr/Publish-Docker-Github-Action@v5
   #       with:
   #         name: discoreme/test/test
   #         username: ${{ secrets.DOCKER_USERNAME }}
